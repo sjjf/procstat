@@ -98,6 +98,9 @@ num exit_signal;
 num cpu;
 num rt_priority;
 num policy;
+num blkio_delay;
+num gutime;
+num cgutime;
 
 long tickspersec;
 
@@ -211,6 +214,9 @@ int main(int argc, char *argv[]) {
   readone(&cpu);
   readone(&rt_priority);
   readone(&policy);
+  readone(&blkio_delay);
+  readone(&gutime);
+  readone(&cgutime);
 
   {
 
@@ -255,6 +261,9 @@ int main(int argc, char *argv[]) {
     printone("cpu", cpu);
     printone("rt_priority", rt_priority);
     printsched("policy", policy);
+    printone("blockio_delay", blkio_delay);
+    printone("guest_time", gutime);
+    printone("cguest_time", cgutime);
   }
 
   return 0;
