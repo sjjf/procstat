@@ -68,4 +68,6 @@ Without arguments procstat reads stat info from stdin.
 
 # thanks
 
-http://brokestream.com/procstat.html https://github.com/vjardin/procstat
+Original code: http://brokestream.com/procstat.html
+
+Forked from: https://github.com/vjardin/procstat
