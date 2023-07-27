@@ -264,9 +264,9 @@ int main(int argc, char *argv[]) {
     printone("cpu", cpu);
     printone("rt_priority", rt_priority);
     printsched("policy", policy);
-    printone("blockio_delay", blkio_delay);
-    printone("guest_time", gutime);
-    printone("cguest_time", cgutime);
+    printtime("blockio_delay", blkio_delay);
+    printtime("guest_time", gutime);
+    printtime("cguest_time", cgutime);
   }
 
   return 0;
