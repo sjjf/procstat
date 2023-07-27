@@ -114,15 +114,15 @@ void readunsigned(unsigned long long *x) { fscanf(input, "%llu ", x); }
 void readstr(char **x) {  fscanf(input, "(%m[^)]) ", x);}
 void readchar(char *x) {  fscanf(input, "%c ", x);}
 
-void printone(char *name, num x) {  printf("%20s: %lld\n", name, x);}
-void printonex(char *name, num x) {  printf("%20s: %016llx\n", name, x);}
-void printunsigned(char *name, unsigned long long x) {  printf("%20s: %llu\n", name, x);}
-void printchar(char *name, char x) {  printf("%20s: %c\n", name, x);}
-void printstr(char *name, char *x) {  printf("%20s: %s\n", name, x);}
+void printone(char *name, num x) {  printf("%21s: %lld\n", name, x);}
+void printonex(char *name, num x) {  printf("%21s: %016llx\n", name, x);}
+void printunsigned(char *name, unsigned long long x) {  printf("%21s: %llu\n", name, x);}
+void printchar(char *name, char x) {  printf("%21s: %c\n", name, x);}
+void printstr(char *name, char *x) {  printf("%21s: %s\n", name, x);}
 
 static void
 printsched(const char *name, num x) {
-  printf("%20s: %s%s\n", name,
+  printf("%21s: %s%s\n", name,
       (x & SCHED_RESET_ON_FORK) ? "SCHED_RESET_ON_FORK+" : "",
     (x == SCHED_OTHER) ? "SCHED_OTHER" :
     (x == SCHED_FIFO)  ? "SCHED_FIFO"  :
@@ -137,7 +137,7 @@ void printtime(const char *name, num x) {
   char buf[1024];
 
   strftime(buf, sizeof(buf), "%k:%M:%S", gmtime(&rt));
-  printf("%20s: %lldd %s (%f)\n", name, (x / tickspersec) / (24 * 60*60), buf, ((double)x) / tickspersec);
+  printf("%21s: %lldd %s (%f)\n", name, (x / tickspersec) / (24 * 60*60), buf, ((double)x) / tickspersec);
 }
 
 int gettimesinceboot() {
@@ -157,7 +157,7 @@ void printtimediff(char *name, num x) {
   char buf[1024];
 
   strftime(buf, sizeof(buf), "%Y-%m-%dT%T%z", localtime(&rt));
-  printf("%20s: %s (%lu.%lus)\n", name, buf, running / tickspersec, running % tickspersec);
+  printf("%21s: %s (%lu.%lus)\n", name, buf, running / tickspersec, running % tickspersec);
 }
 
 int main(int argc, char *argv[]) {
@@ -224,18 +224,18 @@ int main(int argc, char *argv[]) {
   {
 
     printone("pid", pid);
-    printstr("tcomm", tcomm);
+    printstr("comm", tcomm);
     printchar("state", state);
     printone("ppid", ppid);
     printone("pgid", pgid);
     printone("sid", sid);
     printone("tty_nr", tty_nr);
-    printone("tty_pgrp", tty_pgrp);
-    printonex("kernel_flags", flags);
-    printone("min_flt", min_flt);
-    printone("cmin_flt", cmin_flt);
-    printone("maj_flt", maj_flt);
-    printone("cmaj_flt", cmaj_flt);
+    printone("tpgid", tty_pgrp);
+    printonex("flags", flags);
+    printone("minflt", min_flt);
+    printone("cminflt", cmin_flt);
+    printone("majflt", maj_flt);
+    printone("cmajflt", cmaj_flt);
     printtime("utime", utime);
     printtime("stime", stimev);
     printtime("cutime", cutime);
@@ -244,27 +244,27 @@ int main(int argc, char *argv[]) {
     printone("nice", nicev);
     printone("num_threads", num_threads);
     printtime("obs_itrealvalue", obs_it_real_value);
-    printtimediff("start_time", start_time);
+    printtimediff("starttime", start_time);
     printone("vsize", vsize);
     printone("rss", rss);
     printone("rsslim", rsslim);
-    printone("start_code", start_code);
-    printone("end_code", end_code);
-    printone("start_stack", start_stack);
-    printone("esp", esp);
-    printone("eip", eip);
-    printonex("pending", pending);
+    printone("startcode", start_code);
+    printone("endcode", end_code);
+    printone("startstack", start_stack);
+    printone("kstkesp", esp);
+    printone("kstkeip", eip);
+    printonex("signal", pending);
     printonex("blocked", blocked);
-    printonex("sigign", sigign);
+    printonex("sigignore", sigign);
     printonex("sigcatch", sigcatch);
     printone("wchan", wchan);
     printone("obs_nswap", obs_nswap);
     printone("obs_cnswap", obs_cnswap);
     printonex("exit_signal", exit_signal);
-    printone("cpu", cpu);
+    printone("processor", cpu);
     printone("rt_priority", rt_priority);
     printsched("policy", policy);
-    printtime("blockio_delay", blkio_delay);
+    printtime("delayacct_blkio_ticks", blkio_delay);
     printtime("guest_time", gutime);
     printtime("cguest_time", cgutime);
   }
