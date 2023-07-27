@@ -222,7 +222,7 @@ int main(int argc, char *argv[]) {
     printone("sid", sid);
     printone("tty_nr", tty_nr);
     printone("tty_pgrp", tty_pgrp);
-    printone("flags", flags);
+    printonex("kernel_flags", flags);
     printone("min_flt", min_flt);
     printone("cmin_flt", cmin_flt);
     printone("maj_flt", maj_flt);
