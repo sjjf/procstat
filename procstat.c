@@ -153,7 +153,7 @@ void printtimediff(char *name, num x) {
   time_t rt = time(NULL) - (running / tickspersec);
   char buf[1024];
 
-  strftime(buf, sizeof(buf), "%m.%d %H:%M", localtime(&rt));
+  strftime(buf, sizeof(buf), "%Y-%m-%dT%T%z", localtime(&rt));
   printf("%20s: %s (%lu.%lus)\n", name, buf, running / tickspersec, running % tickspersec);
 }
 
