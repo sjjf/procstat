@@ -52,7 +52,7 @@
 typedef long long int num;
 
 num pid;
-char tcomm[PATH_MAX];
+char *tcomm;
 char state;
 
 num ppid;
@@ -105,7 +105,7 @@ FILE *input;
 
 void readone(num *x) { fscanf(input, "%lld ", x); }
 void readunsigned(unsigned long long *x) { fscanf(input, "%llu ", x); }
-void readstr(char *x) {  fscanf(input, "%s ", x);}
+void readstr(char **x) {  fscanf(input, "(%m[^)]) ", x);}
 void readchar(char *x) {  fscanf(input, "%c ", x);}
 
 void printone(char *name, num x) {  printf("%20s: %lld\n", name, x);}
@@ -171,7 +171,7 @@ int main(int argc, char *argv[]) {
 
 
   readone(&pid);
-  readstr(tcomm);
+  readstr(&tcomm);
   readchar(&state);
   readone(&ppid);
   readone(&pgid);
