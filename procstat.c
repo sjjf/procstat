@@ -74,7 +74,8 @@ num cstime;
 num priority;
 num nicev;
 num num_threads;
-num it_real_value;
+//obsolete field: itrealvalue
+num obs_it_real_value;
 
 unsigned long long start_time;
 
@@ -92,8 +93,10 @@ num blocked;
 num sigign;
 num sigcatch;
 num wchan;
-num zero1;
-num zero2;
+// obsolete field: nswap
+num obs_nswap;
+// obsolete field: cnswap
+num obs_cnswap;
 num exit_signal;
 num cpu;
 num rt_priority;
@@ -193,7 +196,7 @@ int main(int argc, char *argv[]) {
   readone(&priority);
   readone(&nicev);
   readone(&num_threads);
-  readone(&it_real_value);
+  readone(&obs_it_real_value);
   readunsigned(&start_time);
   readone(&vsize);
   readone(&rss);
@@ -208,8 +211,8 @@ int main(int argc, char *argv[]) {
   readone(&sigign);
   readone(&sigcatch);
   readone(&wchan);
-  readone(&zero1);
-  readone(&zero2);
+  readone(&obs_nswap);
+  readone(&obs_cnswap);
   readone(&exit_signal);
   readone(&cpu);
   readone(&rt_priority);
@@ -240,7 +243,7 @@ int main(int argc, char *argv[]) {
     printone("priority", priority);
     printone("nice", nicev);
     printone("num_threads", num_threads);
-    printtime("it_real_value", it_real_value);
+    printtime("obs_itrealvalue", obs_it_real_value);
     printtimediff("start_time", start_time);
     printone("vsize", vsize);
     printone("rss", rss);
@@ -255,8 +258,8 @@ int main(int argc, char *argv[]) {
     printonex("sigign", sigign);
     printonex("sigcatch", sigcatch);
     printone("wchan", wchan);
-    printone("zero1", zero1);
-    printone("zero2", zero2);
+    printone("obs_nswap", obs_nswap);
+    printone("obs_cnswap", obs_cnswap);
     printonex("exit_signal", exit_signal);
     printone("cpu", cpu);
     printone("rt_priority", rt_priority);
